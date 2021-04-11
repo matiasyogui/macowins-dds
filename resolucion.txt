@@ -1,0 +1,56 @@
+class Prenda {
+	var precio
+	var tipo
+	var estado
+	var valorFijo
+	
+	method calcularPrecio(){
+		if(estado == 'promocion'){
+			precio -= valorFijo
+		}else if(estado == 'liquidacion'){
+			precio /= 2
+		}
+		
+		return precio
+	}
+}
+
+class Venta {
+	var prendas = []
+	var fecha
+	var precioTotal
+	var cantidad
+	
+	method registrarVenta(){
+		macowins.sumarGanancias(precioTotal)
+	}
+	
+	method pago(){
+		prendas.forEach({ prenda => precioTotal += prenda.calcularPrecio() })
+		self.registrarVenta()
+	}
+}
+
+class VentaEfectivo inherits Venta {
+	
+}
+
+class VentaTarjeta inherits Venta {
+  var cantidadCuotas
+	var coeficiente
+	
+	override method pago(){
+		prendas.forEach({ prenda => precioTotal += prenda.calcularPrecio() })
+		precioTotal += cantidadCuotas * coeficiente + (precioTotal * 0.01)
+		self.registrarVenta()
+	}
+}
+
+
+object macowins {
+	var ganancias
+	
+	method sumarGanancias(monto){
+		ganancias += monto 
+	}
+}
