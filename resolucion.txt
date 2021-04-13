@@ -1,19 +1,28 @@
 class Prenda {
-	var precio
+	var precioOriginal
 	var tipo
 	var estado
 	var valorFijo
 	
 	method calcularPrecio(){
-		if(estado == 'promocion'){
-			precio -= valorFijo
-		}else if(estado == 'liquidacion'){
-			precio /= 2
-		}
-		
-		return precio
+		return tipo.calcularPrecio(precioOriginal)
 	}
 }
+
+object promocion{
+	var precioFijo
+	method calcularPrecio(precioOriginal) = precioOriginal - precioFijo
+}
+
+object liquidacion{
+	method calcularPrecio(precioOriginal) = precioOriginal / 2
+}
+
+object nuevo{
+	method CalcularPrecio(precioOriginal) = precioOriginal
+}
+
+
 
 class Venta {
 	var prendas = []
@@ -21,13 +30,9 @@ class Venta {
 	var precioTotal
 	var cantidad
 	
-	method registrarVenta(){
-		macowins.sumarGanancias(precioTotal)
-	}
-	
 	method pago(){
 		prendas.forEach({ prenda => precioTotal += prenda.calcularPrecio() })
-		self.registrarVenta()
+		return precioTotal
 	}
 }
 
@@ -36,21 +41,27 @@ class VentaEfectivo inherits Venta {
 }
 
 class VentaTarjeta inherits Venta {
-  var cantidadCuotas
+	var cantidadCuotas
 	var coeficiente
 	
 	override method pago(){
-		prendas.forEach({ prenda => precioTotal += prenda.calcularPrecio() })
-		precioTotal += cantidadCuotas * coeficiente + (precioTotal * 0.01)
-		self.registrarVenta()
+		precioTotal += cantidadCuotas * coeficiente + (super() * 0.01)
+		return precioTotal
 	}
 }
 
-
 object macowins {
+	var ventas = []
+	var ventasFiltradas = []
 	var ganancias
 	
-	method sumarGanancias(monto){
-		ganancias += monto 
+	method filtrarPorFecha(fecha){
+		ventasFiltradas = ventas.filter({venta => ventas.fecha() == fecha})
+	}
+	
+	method gananciasDe(fecha){
+		ganancias = 0
+		self.filtrarPorFecha(fecha)
+		ventasFiltradas.forEach({ venta => ganancias += venta.pago() }) 
 	}
 }
