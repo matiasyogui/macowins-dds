@@ -12,3 +12,6 @@ Requerimientos:
 3. Registrar las ventas y saber las ganancias de un determinado día.
     * Cada venta tiene las prendas, cantidad y fecha de venta.
     * Pueden ser en efectivo (no se modifica el precio) o con tarjeta (recargo según la cantidad de cuotas seleccionadas. Cantidad de cuotas * coeficiente fijo + 0.01 del valor de cada prenda)
+
+Diagrama de clases:
+![](https://github.com/matiasyogui/macowins-dds/blob/main/Diagrama%20de%20clases%20Macowins.png)
