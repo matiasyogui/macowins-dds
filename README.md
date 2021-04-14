@@ -15,7 +15,7 @@
     * Pueden ser en efectivo (no se modifica el precio) o con tarjeta (recargo según la cantidad de cuotas seleccionadas. Cantidad de cuotas * coeficiente fijo + 0.01 del valor de cada prenda)
 
 ### Diagrama de clases: ###
-![](https://github.com/matiasyogui/macowins-dds/blob/main/Diagrama%20de%20clases%20Macowins.png)
+![](https://github.com/matiasyogui/macowins-dds/blob/main/Diagrama%20de%20clases%20Macowins%20(2).png)
 
 ### Aclaraciones: ###
 * Para calcular el precio de las prendas, opte por usar composición ya que el estado puede cambiar en el tiempo.
