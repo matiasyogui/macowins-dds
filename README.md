@@ -19,4 +19,4 @@
 
 ### Aclaraciones: ###
 * Para calcular el precio de las prendas, opte por usar composición ya que el estado puede cambiar en el tiempo.
-* Para modelar las ventas, senti que era mejor usar una interfaz (Venta) aunque me deje una clase vacia (VentaEfectivo).
+* Para modelar las ventas, senti que era mejor usar una clase abstracta (Venta) aunque me deje una clase vacia (VentaEfectivo).
